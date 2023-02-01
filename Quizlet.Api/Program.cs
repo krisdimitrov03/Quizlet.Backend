@@ -1,50 +1,40 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Identity.Web;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore;
+using Quizlet.Infrastructure.Data;
+using Quizlet.Api.Extensions;
+using Quizlet.Infrastructure.Data.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
+var appSettings = builder.Services.GetApplicationSettings(builder.Configuration);
 
-// Add services to the container.
-builder.Services
-    .AddAuthentication(x =>
-{
-    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-    .AddJwtBearer(x =>
-    {
-        x.RequireHttpsMetadata = false;
-        x.SaveToken = true; //important in order to work
-        x.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            //IssuerSigningKey = new SymmetricSecurityKey(key), //configure key
-            ValidateIssuer = false,
-            ValidateAudience = false
-        };
-    });
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<QuizletContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetDefaultConnectionString()))
+    .AddIdentity()
+    .AddJwtAuthentication(appSettings)
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen()
+    .AddControllers();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage()
+        .UseSwagger()
+        .UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseRouting()
+    .UseCors(options => options
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod())
+    .UseHttpsRedirection()
+    .UseAuthentication()
+    .UseAuthorization()
+    .UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers();
+    });
 
-// specific authentication and authorization!!!
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.MapControllers();
-
+Seeder.Seed(app);
 app.Run();
