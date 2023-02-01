@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Quizlet.Api.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class BaseController : ControllerBase
     {
