@@ -1,4 +1,4 @@
-﻿using System.Configuration;
+﻿using Quizlet.Core.Settings;
 
 namespace Quizlet.Api.Extensions
 {

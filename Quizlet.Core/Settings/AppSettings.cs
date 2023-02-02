@@ -1,4 +1,4 @@
-﻿namespace Quizlet.Api
+﻿namespace Quizlet.Core.Settings
 {
     public class AppSettings
     {

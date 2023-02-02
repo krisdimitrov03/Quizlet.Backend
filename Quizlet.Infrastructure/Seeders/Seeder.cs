@@ -1,25 +1,28 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using Quizlet.Infrastructure.Data.Models.Auth;
+using Quizlet.Infrastructure.Data;
+using Quizlet.Infrastructure.Data.Models.Identity;
 
-namespace Quizlet.Infrastructure.Data.Seeders
+namespace Quizlet.Infrastructure.Seeders
 {
     public static class Seeder
     {
-        public static void Seed(IApplicationBuilder builder)
+        public static IApplicationBuilder Seed(this IApplicationBuilder builder)
         {
             using (var serviceScope = builder.ApplicationServices.CreateScope())
             {
-                var context = serviceScope.ServiceProvider.GetService<QuizletContext>();
+                var context = serviceScope.ServiceProvider.GetService<QuizletAPIContext>();
 
                 context.Database.EnsureCreated();
 
                 AddData<ApplicationUser>(context, DataConstants.Users);
             }
+
+            return builder;
         }
 
-        private static void AddData<T>(QuizletContext context, string fileName)
+        private static void AddData<T>(QuizletAPIContext context, string fileName)
             where T : class
         {
             if (!context.Set<T>().Any())

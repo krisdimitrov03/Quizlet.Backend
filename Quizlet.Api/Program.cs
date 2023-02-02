@@ -1,15 +1,14 @@
-using Microsoft.EntityFrameworkCore;
-using Quizlet.Infrastructure.Data;
 using Quizlet.Api.Extensions;
-using Quizlet.Infrastructure.Data.Seeders;
+using Quizlet.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 var appSettings = builder.Services.GetApplicationSettings(builder.Configuration);
 
-builder.Services.AddDbContext<QuizletContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetDefaultConnectionString()))
+builder.Services
+    .AddDatabase(builder.Configuration)
     .AddIdentity()
     .AddJwtAuthentication(appSettings)
+    .AddUserDefinedServices()
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
     .AddControllers();
@@ -17,24 +16,14 @@ builder.Services.AddDbContext<QuizletContext>(options =>
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage()
-        .UseSwagger()
-        .UseSwaggerUI();
-}
+    app.UseDevelopmentSettings();
 
 app.UseRouting()
-    .UseCors(options => options
-        .AllowAnyOrigin()
-        .AllowAnyHeader()
-        .AllowAnyMethod())
+    .UseCustomCors()
     .UseHttpsRedirection()
     .UseAuthentication()
     .UseAuthorization()
-    .UseEndpoints(endpoints =>
-    {
-        endpoints.MapControllers();
-    });
+    .MapControllers()
+    .Seed();
 
-Seeder.Seed(app);
 app.Run();

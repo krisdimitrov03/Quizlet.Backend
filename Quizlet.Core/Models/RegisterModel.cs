@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Quizlet.Api.Models
+namespace Quizlet.Core.Models
 {
     public class RegisterModel
     {

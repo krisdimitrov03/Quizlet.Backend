@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Quizlet.Infrastructure.Data.Models.Auth;
+using Quizlet.Infrastructure.Data.Models.Identity;
 
 namespace Quizlet.Infrastructure.Data;
 
-public class QuizletContext : IdentityDbContext<ApplicationUser>
+public class QuizletAPIContext : IdentityDbContext<ApplicationUser>
 {
-    public QuizletContext(DbContextOptions<QuizletContext> options)
+    public QuizletAPIContext(DbContextOptions<QuizletAPIContext> options)
         : base(options)
     {
     }

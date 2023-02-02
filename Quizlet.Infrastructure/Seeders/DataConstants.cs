@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Quizlet.Infrastructure.Data.Seeders
+namespace Quizlet.Infrastructure.Seeders
 {
     public static class DataConstants
     {

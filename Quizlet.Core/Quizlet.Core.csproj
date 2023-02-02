@@ -10,10 +10,4 @@
     <ProjectReference Include="..\Quizlet.Infrastructure\Quizlet.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace Quizlet.Infrastructure.Data.Models.Auth;
+namespace Quizlet.Infrastructure.Data.Models.Identity;
 
 public class ApplicationUser : IdentityUser
 {
