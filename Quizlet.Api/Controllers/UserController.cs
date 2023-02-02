@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Quizlet.Core.Constants;
 using Quizlet.Core.Contracts;
-using Quizlet.Core.Models;
+using Quizlet.Core.Models.Authentication;
 using Quizlet.Core.Services;
 
 namespace Quizlet.Api.Controllers

@@ -1,5 +1,5 @@
 ﻿using Quizlet.Core.Contracts;
-using Quizlet.Core.Models;
+using Quizlet.Core.Models.Authentication;
 using Quizlet.Infrastructure.Data.Repositories;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using Quizlet.Core.Models;
+﻿using Quizlet.Core.Models.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
