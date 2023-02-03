@@ -24,6 +24,6 @@ app.UseRouting()
     .UseAuthentication()
     .UseAuthorization()
     .MapControllers()
-    .Seed();
+    .SeedDatabase();
 
 app.Run();

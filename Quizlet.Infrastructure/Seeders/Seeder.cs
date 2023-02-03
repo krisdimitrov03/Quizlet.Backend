@@ -8,7 +8,7 @@ namespace Quizlet.Infrastructure.Seeders
 {
     public static class Seeder
     {
-        public static IApplicationBuilder Seed(this IApplicationBuilder builder)
+        public static IApplicationBuilder SeedDatabase(this IApplicationBuilder builder)
         {
             using (var serviceScope = builder.ApplicationServices.CreateScope())
             {
