@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Quizlet.Core.Models.Authentication;
+using Quizlet.Core.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,6 @@ namespace Quizlet.Core.Contracts
 {
     public interface IJwtService
     {
-        Task<string> GenerateToken(string username, string[] roles);
+        Task<string> GenerateToken(TokenData data, AppSettings settings);
     }
 }

@@ -1,15 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Quizlet.Core.Contracts;
 using Quizlet.Core.Models.Authentication;
 using Quizlet.Core.Models.User;
+using Quizlet.Core.Settings;
 using Quizlet.Infrastructure.Data.Models.Identity;
 using Quizlet.Infrastructure.Data.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Quizlet.Core.Services
 {
@@ -19,16 +16,19 @@ namespace Quizlet.Core.Services
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IJwtService jwtService;
+        private readonly AppSettings appSettings;
 
         public UserService(IApplicationDbRepository _repo,
             UserManager<ApplicationUser> _userManager,
             SignInManager<ApplicationUser> _signInManager,
-            IJwtService _jwtService)
+            IJwtService _jwtService,
+            IOptions<AppSettings> _appSettings)
         {
             this.repo = _repo;
             this.userManager = _userManager;
             this.signInManager = _signInManager;
             this.jwtService = _jwtService;
+            this.appSettings = _appSettings.Value;
         }
 
         public async Task<(bool, string[])> RegisterUser(RegisterModel data)
@@ -47,7 +47,14 @@ namespace Quizlet.Core.Services
             var user = await userManager.FindByNameAsync(data.Username);
             var roles = await userManager.GetRolesAsync(user);
 
-            var token = await jwtService.GenerateToken(user.UserName, roles.ToArray());
+            var tokenData = new TokenData
+            {
+                UserId = user.Id,
+                Username = user.UserName,
+                Roles = string.Join(", ", roles)
+            };
+
+            var token = await jwtService.GenerateToken(tokenData, appSettings);
 
             return (true, token);
         }
