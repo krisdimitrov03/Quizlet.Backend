@@ -9,7 +9,7 @@ namespace Quizlet.Core.Services
 {
     public class JwtService : IJwtService
     {
-        public async Task<string> GenerateToken(string username, string password, string[] roles)
+        public async Task<string> GenerateToken(string username, string[] roles)
         {
             return "token";
         }

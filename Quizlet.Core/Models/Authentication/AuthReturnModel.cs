@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Quizlet.Core.Contracts
+namespace Quizlet.Core.Models.Authentication
 {
-    public interface IJwtService
+    public abstract class AuthReturnModel
     {
-        Task<string> GenerateToken(string username, string[] roles);
+        public bool Success { get; set; }
     }
 }
