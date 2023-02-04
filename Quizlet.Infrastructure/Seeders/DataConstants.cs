@@ -11,5 +11,7 @@ namespace Quizlet.Infrastructure.Seeders
         public const string Path = "../Quizlet.Infrastructure/Seeders/Data/{0}";
 
         public const string Users = "users.json";
+        public const string Quizes = "quizes.json";
+        public const string Genders = "genders.json";
     }
 }

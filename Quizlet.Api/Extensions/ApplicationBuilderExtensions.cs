@@ -2,7 +2,7 @@
 {
     public static class ApplicationBuilderExtensions
     {
-        public static IApplicationBuilder UseCustomCors(this IApplicationBuilder app)
+        public static IApplicationBuilder ConfigureCors(this IApplicationBuilder app)
             => app.UseCors(options => options
                 .AllowAnyOrigin()
                 .AllowAnyHeader()

@@ -19,7 +19,7 @@ if (app.Environment.IsDevelopment())
     app.UseDevelopmentSettings();
 
 app.UseRouting()
-    .UseCustomCors()
+    .ConfigureCors()
     .UseHttpsRedirection()
     .UseAuthentication()
     .UseAuthorization()

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Quizlet.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using Quizlet.Infrastructure.Data;
 namespace Quizlet.Infrastructure.Migrations
 {
     [DbContext(typeof(QuizletAPIContext))]
-    partial class QuizletAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20230204222919_AddQuestionsListToQuiz")]
+    partial class AddQuestionsListToQuiz
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

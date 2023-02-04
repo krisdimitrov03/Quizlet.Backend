@@ -23,7 +23,6 @@ namespace Quizlet.Infrastructure.Data.Models
         [Range(1, 10)]
         public int Points { get; set; }
 
-        [Required]
         public IList<QuestionOption> Options { get; set; }
     }
 }

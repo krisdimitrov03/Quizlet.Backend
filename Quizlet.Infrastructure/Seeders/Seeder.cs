@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Quizlet.Infrastructure.Data;
+using Quizlet.Infrastructure.Data.Models;
 using Quizlet.Infrastructure.Data.Models.Identity;
 
 namespace Quizlet.Infrastructure.Seeders
@@ -16,7 +17,9 @@ namespace Quizlet.Infrastructure.Seeders
 
                 context.Database.EnsureCreated();
 
+                AddData<Gender>(context, DataConstants.Genders);
                 AddData<ApplicationUser>(context, DataConstants.Users);
+                AddData<Quiz>(context, DataConstants.Quizes);
             }
 
             return builder;

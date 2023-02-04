@@ -35,5 +35,7 @@ namespace Quizlet.Infrastructure.Data.Models
 
         [ForeignKey(nameof(ImageId))]
         public Image Image { get; set; }
+
+        public IList<Question> Questions { get; set; }
     }
 }
