@@ -54,7 +54,7 @@ namespace Quizlet.Core.Services
                 Roles = string.Join(", ", roles)
             };
 
-            var token = await jwtService.GenerateToken(tokenData, appSettings);
+            var token = jwtService.GenerateToken(tokenData, appSettings);
 
             return (true, token);
         }

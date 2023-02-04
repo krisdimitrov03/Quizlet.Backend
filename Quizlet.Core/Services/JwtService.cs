@@ -14,7 +14,7 @@ namespace Quizlet.Core.Services
 {
     public class JwtService : IJwtService
     {
-        public Task<string> GenerateToken(TokenData data, AppSettings settings)
+        public string GenerateToken(TokenData data, AppSettings settings)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(settings.Secret);

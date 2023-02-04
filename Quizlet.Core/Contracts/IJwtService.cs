@@ -10,6 +10,6 @@ namespace Quizlet.Core.Contracts
 {
     public interface IJwtService
     {
-        Task<string> GenerateToken(TokenData data, AppSettings settings);
+        string GenerateToken(TokenData data, AppSettings settings);
     }
 }
