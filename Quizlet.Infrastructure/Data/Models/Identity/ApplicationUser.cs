@@ -14,8 +14,7 @@ public class ApplicationUser : IdentityUser
     [StringLength(100)]
     public string LastName { get; set; }
 
-    [Required]
-    public string ImageId { get; set; }
+    public string? ImageId { get; set; }
 
     [ForeignKey(nameof(ImageId))]
     public Image Image { get; set; }
@@ -27,7 +26,7 @@ public class ApplicationUser : IdentityUser
     public Gender Gender { get; set; }
 
     [Required]
-    public int TotalPoints { get; set; }
+    public int TotalPoints { get; set; } = 0;
 
     public IList<Quiz> Favourites { get; set; }
 }

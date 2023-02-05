@@ -27,4 +27,8 @@
     <ProjectReference Include="..\Quizlet.Core\Quizlet.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Filters\" />
+  </ItemGroup>
+
 </Project>

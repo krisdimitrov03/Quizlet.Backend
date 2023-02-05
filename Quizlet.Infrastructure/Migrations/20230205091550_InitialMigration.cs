@@ -89,7 +89,7 @@ namespace Quizlet.Infrastructure.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ImageId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ImageId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     GenderId = table.Column<int>(type: "int", nullable: false),
                     TotalPoints = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -260,7 +260,7 @@ namespace Quizlet.Infrastructure.Migrations
                         column: x => x.QuizId,
                         principalTable: "Quizes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

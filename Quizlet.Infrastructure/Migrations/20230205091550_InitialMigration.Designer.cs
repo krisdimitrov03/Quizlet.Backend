@@ -12,8 +12,8 @@ using Quizlet.Infrastructure.Data;
 namespace Quizlet.Infrastructure.Migrations
 {
     [DbContext(typeof(QuizletAPIContext))]
-    [Migration("20230204222919_AddQuestionsListToQuiz")]
-    partial class AddQuestionsListToQuiz
+    [Migration("20230205091550_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -8,7 +8,7 @@ namespace Quizlet.Api.Controllers
         [HttpPost(nameof(Create))]
         public async Task<IActionResult> Create(QuizCreateModel data)
         {
-
+            return Ok();
         }
     }
 }
