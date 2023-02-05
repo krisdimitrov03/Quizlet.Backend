@@ -7,6 +7,8 @@ using Quizlet.Infrastructure.Data.Models.Identity;
 
 namespace Quizlet.Infrastructure.Seeders
 {
+    #pragma warning disable CS8602 // Dereference of a possibly null reference.
+    
     public static class Seeder
     {
         public static IApplicationBuilder SeedDatabase(this IApplicationBuilder builder)
@@ -42,4 +44,6 @@ namespace Quizlet.Infrastructure.Seeders
             }
         }
     }
+
+    #pragma warning restore CS8602 // Dereference of a possibly null reference.
 }

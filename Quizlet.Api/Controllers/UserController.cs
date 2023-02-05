@@ -47,12 +47,6 @@ namespace Quizlet.Api.Controllers
         [HttpPost(nameof(Login))]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(new 
-                { 
-                    Message = MessageConstants.ErrorMessages.ModelStateValidationFailure 
-                });
-
             var (success, token) = await service.LogUserIn(model);
 
             var response = new LoginReturnModel
@@ -62,9 +56,15 @@ namespace Quizlet.Api.Controllers
             };
 
             if (success)
+            {
+                var options = new CookieOptions() { HttpOnly = true };
+                Response.Cookies.Append("Quzlet-Auth", token, options);
                 return Ok(response);
+            }
             else
+            {
                 return BadRequest(response);
+            }
         }
 
         [HttpGet(nameof(Logout))]
@@ -88,5 +88,16 @@ namespace Quizlet.Api.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(string id) => Ok();
+
+        [HttpGet($"{nameof(Edit)}/{{id}}")]
+        [Authorize]
+        public async Task<IActionResult> Edit(string id)
+        {
+
+
+            return Ok();
+        }
+
+
     }
 }

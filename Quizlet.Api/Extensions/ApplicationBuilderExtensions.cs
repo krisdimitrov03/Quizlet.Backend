@@ -16,6 +16,7 @@
 
         public static IApplicationBuilder UseDevelopmentSettings(this IApplicationBuilder app)
             => app.UseDeveloperExceptionPage()
+                //.UseExceptionHandler()
                 .UseSwagger()
                 .UseSwaggerUI();
     }

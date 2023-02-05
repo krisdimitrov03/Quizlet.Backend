@@ -4,6 +4,8 @@ using System.Linq.Expressions;
 
 namespace Quizlet.Infrastructure.Data.Common
 {
+    #pragma warning disable CS8603 // Possible null reference return.
+
     public class Repository : IRepository
     {
         /// <summary>
@@ -180,4 +182,6 @@ namespace Quizlet.Infrastructure.Data.Common
             DeleteRange(entities);
         }
     }
+
+    #pragma warning restore CS8603 // Possible null reference return.
 }
