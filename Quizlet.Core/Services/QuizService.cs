@@ -19,9 +19,23 @@ namespace Quizlet.Core.Services
             this.repo = _repo;
         }
 
-        public async Task<Quiz> Create(QuizCreateModel data)
+        //todo
+        public async Task<Quiz?> Create(QuizCreateModel data)
         {
-            throw new NotImplementedException();
+            var image = new Image { Url = data.ImageUrl };
+
+            var quiz = new Quiz
+            {
+                CategoryId = data.CategoryId,
+                CreatorId = data.CreatorId,
+                Description = data.Description,
+                Image = image,
+                Questions = data.Questions,
+                Title = data.Title
+            };
+
+            return quiz;
+
         }
 
         public Task<Quiz> Edit(QuizEditModel data)
