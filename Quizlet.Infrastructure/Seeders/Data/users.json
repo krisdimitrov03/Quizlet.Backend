@@ -1,2 +1,15 @@
 ﻿[
+	{
+		"id": "1368c2dc-5e13-41d3-a664-d541dd20f140",
+		"username": "KrisDmt",
+		"email": "kristian@gmail.com",
+		"passwordHash": "AQAAAAEAACcQAAAAEKgWWt0lxbeBlKY19/lvjcY2CDVZMuiyIZ+ql0AojuhpAEpdss6P8rD0bnLyaWig/A==",
+		"firstName": "Kristian",
+		"lastName": "Dimitrov",
+		"genderId": 1,
+		"image": {
+			"url": "https://bit.ly/3lE0dME"
+		},
+		"totalPoints": 0
+	}
 ]

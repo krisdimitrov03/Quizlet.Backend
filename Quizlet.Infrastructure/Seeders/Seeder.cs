@@ -21,6 +21,7 @@ namespace Quizlet.Infrastructure.Seeders
 
                 AddData<Gender>(context, DataConstants.Genders);
                 AddData<ApplicationUser>(context, DataConstants.Users);
+                AddData<Category>(context, DataConstants.Categories);
                 AddData<Quiz>(context, DataConstants.Quizes);
             }
 

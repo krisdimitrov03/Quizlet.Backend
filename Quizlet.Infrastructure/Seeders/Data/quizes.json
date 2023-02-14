@@ -1,3 +1,80 @@
 ﻿[
-
+	{
+		"id": "7e5ade67-ee5e-4292-8747-b60ad2a8e7e8",
+		"title": "Bulgarian History",
+		"description": "This quiz is amazing",
+		"image": {
+			"url": "https://bit.ly/3lxUPuP"
+		},
+		"creatorId": "1368c2dc-5e13-41d3-a664-d541dd20f140",
+		"categoryId": 1,
+		"questions": [
+			{
+				"text": "When was Bulgaria created?",
+				"points": 5,
+				"options": [
+					{
+						"text": "855",
+						"isCorrect": false
+					},
+					{
+						"text": "681",
+						"isCorrect": true
+					},
+					{
+						"text": "211",
+						"isCorrect": false
+					},
+					{
+						"text": "680",
+						"isCorrect": false
+					}
+				]
+			},
+			{
+				"text": "Who was the slavic alphabet invented by?",
+				"points": 15,
+				"options": [
+					{
+						"text": "St.St. Cyril and Methodius",
+						"isCorrect": true
+					},
+					{
+						"text": "St. Kliment Ohridski",
+						"isCorrect": false
+					},
+					{
+						"text": "St. Yoan Ekzarch",
+						"isCorrect": false
+					},
+					{
+						"text": "King Simeon the First",
+						"isCorrect": false
+					}
+				]
+			},
+			{
+				"text": "Which leader of Bulgaria was the Christianity set by?",
+				"points": 20,
+				"options": [
+					{
+						"text": "Khan Krum",
+						"isCorrect": false
+					},
+					{
+						"text": "Knyaz Boris the First",
+						"isCorrect": true
+					},
+					{
+						"text": "King Boris the Third",
+						"isCorrect": false
+					},
+					{
+						"text": "King Kaloyan",
+						"isCorrect": false
+					}
+				]
+			}
+		]
+	}
 ]

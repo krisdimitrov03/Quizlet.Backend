@@ -13,5 +13,6 @@ namespace Quizlet.Infrastructure.Seeders
         public const string Users = "users.json";
         public const string Quizes = "quizes.json";
         public const string Genders = "genders.json";
+        public const string Categories = "categories.json";
     }
 }
