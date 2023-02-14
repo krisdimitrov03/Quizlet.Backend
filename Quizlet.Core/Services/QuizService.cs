@@ -2,11 +2,6 @@
 using Quizlet.Core.Models;
 using Quizlet.Infrastructure.Data.Models;
 using Quizlet.Infrastructure.Data.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Quizlet.Core.Services
 {
@@ -19,33 +14,60 @@ namespace Quizlet.Core.Services
             this.repo = _repo;
         }
 
-        //todo
         public async Task<Quiz?> Create(QuizCreateModel data)
         {
-            var image = new Image { Url = data.ImageUrl };
-
-            var quiz = new Quiz
+            try
             {
-                CategoryId = data.CategoryId,
-                CreatorId = data.CreatorId,
-                Description = data.Description,
-                Image = image,
-                Questions = data.Questions,
-                Title = data.Title
-            };
+                await repo.AddRangeAsync(data.Questions);
 
-            return quiz;
+                var image = new Image()
+                {
+                    Url = data.ImageUrl
+                };
+                await repo.AddAsync(image);
+                await repo.SaveChangesAsync();
+
+                var quiz = new Quiz
+                {
+                    Questions = data.Questions,
+                    CategoryId = data.CategoryId,
+                    CreatorId = data.CreatorId,
+                    Image = image,
+                    Description = data.Description,
+                    Title = data.Title
+                };
+
+                await repo.AddAsync(quiz);
+                await repo.SaveChangesAsync();
+
+                return quiz;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
 
         }
 
-        public Task<Quiz> Edit(QuizEditModel data)
+        //todo
+        public async Task<Quiz?> Edit(QuizEditModel data)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Remove(string id)
+        public async Task<bool> Remove(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await repo.DeleteAsync<Quiz>(id);
+                await repo.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

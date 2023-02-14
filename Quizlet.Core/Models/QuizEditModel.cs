@@ -8,6 +8,6 @@ namespace Quizlet.Core.Models
 {
     public class QuizEditModel
     {
-
+        public string Id { get; set; }
     }
 }
