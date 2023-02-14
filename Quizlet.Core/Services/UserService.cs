@@ -38,47 +38,62 @@ namespace Quizlet.Core.Services
 
         public async Task<(bool, string[])> RegisterUser(RegisterModel data)
         {
-            var user = Activator.CreateInstance<ApplicationUser>();
+            try
+            {
+                var user = Activator.CreateInstance<ApplicationUser>();
 
-            await userStore.SetUserNameAsync(user, data.Username, CancellationToken.None);
-            await emailStore.SetEmailAsync(user, data.Email, CancellationToken.None);
+                await userStore.SetUserNameAsync(user, data.Username, CancellationToken.None);
+                await emailStore.SetEmailAsync(user, data.Email, CancellationToken.None);
 
-            user.FirstName = data.FirstName;
-            user.LastName = data.LastName;
-            user.GenderId = data.GenderId;
+                user.FirstName = data.FirstName;
+                user.LastName = data.LastName;
+                user.GenderId = data.GenderId;
 
-            var result = await userManager.CreateAsync(user, data.Password);
+                var result = await userManager.CreateAsync(user, data.Password);
 
-            if (result.Succeeded)
-                return (true, new string[0]);
+                if (result.Succeeded)
+                    return (true, new string[0]);
 
-            var errors = result.Errors
-                .Select(e => e.Description)
-                .ToArray();
+                var errors = result.Errors
+                    .Select(e => e.Description)
+                    .ToArray();
 
-            return (false, errors);
+                return (false, errors);
+            }
+            catch (Exception)
+            {
+                return (false, new string[0]);
+            }
         }
 
         public async Task<(bool, string)> LogUserIn(LoginModel data)
         {
-            var result = await signInManager.PasswordSignInAsync(data.Username, data.Password, false, false);
-
-            if (!result.Succeeded)
-                return (false, string.Empty);
-
-            var user = await userManager.FindByNameAsync(data.Username);
-            var roles = await userManager.GetRolesAsync(user);
-
-            var tokenData = new TokenData
+            try
             {
-                UserId = user.Id,
-                Username = user.UserName,
-                Roles = string.Join(", ", roles)
-            };
+                var result = await signInManager
+                    .PasswordSignInAsync(data.Username, data.Password, false, false);
 
-            var token = jwtService.GenerateToken(tokenData, appSettings);
+                if (!result.Succeeded)
+                    throw new Exception();
 
-            return (true, token);
+                var user = await userManager.FindByNameAsync(data.Username);
+                var roles = await userManager.GetRolesAsync(user);
+
+                var tokenData = new TokenData
+                {
+                    UserId = user.Id,
+                    Username = user.UserName,
+                    Roles = string.Join(", ", roles)
+                };
+
+                var token = jwtService.GenerateToken(tokenData, appSettings);
+
+                return (true, token);
+            }
+            catch (Exception)
+            {
+                return (false, string.Empty);
+            }
         }
 
         public async Task<UserInTableModel[]> GetUsersInTable()

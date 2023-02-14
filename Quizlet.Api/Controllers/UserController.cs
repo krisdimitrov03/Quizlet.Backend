@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Quizlet.Core.Constants;
 using Quizlet.Core.Contracts;
 using Quizlet.Core.Models.Authentication;
-using Quizlet.Core.Services;
 using Quizlet.Infrastructure.Data.Models.Identity;
 
 namespace Quizlet.Api.Controllers
@@ -71,8 +70,15 @@ namespace Quizlet.Api.Controllers
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            await signInManager.SignOutAsync();
-            return Ok();
+            try
+            {
+                await signInManager.SignOutAsync();
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         [HttpGet(nameof(All))]
