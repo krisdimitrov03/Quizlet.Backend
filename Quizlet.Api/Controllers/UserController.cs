@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Quizlet.Core.Constants;
 using Quizlet.Core.Contracts;
 using Quizlet.Core.Models.Authentication;
+using Quizlet.Core.Models.Return;
 using Quizlet.Infrastructure.Data.Models.Identity;
 
 namespace Quizlet.Api.Controllers
@@ -31,11 +32,7 @@ namespace Quizlet.Api.Controllers
 
             var (success, errors) = await service.RegisterUser(model);
 
-            var response = new RegisterReturnModel
-            {
-                Success = success,
-                Errors = errors
-            };
+            var response = new RegisterReturnModel(success, errors);
 
             if (success)
                 return Ok(response);
@@ -48,11 +45,7 @@ namespace Quizlet.Api.Controllers
         {
             var (success, token) = await service.LogUserIn(model);
 
-            var response = new LoginReturnModel
-            {
-                Success = success,
-                Token = token
-            };
+            var response = new LoginReturnModel(success, token);
 
             if (success)
             {
@@ -73,11 +66,11 @@ namespace Quizlet.Api.Controllers
             try
             {
                 await signInManager.SignOutAsync();
-                return Ok();
+                return Ok(new SuccessReturnModel());
             }
             catch (Exception)
             {
-                return BadRequest();
+                return BadRequest(new FailReturnModel());
             }
         }
 

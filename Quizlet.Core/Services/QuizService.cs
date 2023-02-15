@@ -1,5 +1,6 @@
-﻿using Quizlet.Core.Contracts;
-using Quizlet.Core.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Quizlet.Core.Contracts;
+using Quizlet.Core.Models.Quiz;
 using Quizlet.Infrastructure.Data.Models;
 using Quizlet.Infrastructure.Data.Repositories;
 
@@ -53,6 +54,25 @@ namespace Quizlet.Core.Services
         public async Task<Quiz?> Edit(QuizEditModel data)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<Quiz>> GetAll()
+        {
+            return await repo.All<Quiz>()
+                .Include(x => x.Category)
+                .Include(x => x.Image)
+                .Include(x => x.Creator)
+                .Include(x => x.Questions)
+                .ThenInclude(x => x.Options)
+                .ToListAsync();
+        }
+
+        public async Task<Quiz?> GetById(string id)
+        {
+            var quizes = await GetAll();
+
+            return quizes
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public async Task<bool> Remove(string id)

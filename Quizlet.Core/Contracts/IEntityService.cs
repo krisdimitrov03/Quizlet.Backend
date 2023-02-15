@@ -16,5 +16,9 @@ namespace Quizlet.Core.Contracts
         Task<bool> Remove(TId id);
 
         Task<T?> Edit(TGetEdit data);
+
+        Task<T?> GetById(TId id);
+
+        Task<List<T>> GetAll();
     }
 }

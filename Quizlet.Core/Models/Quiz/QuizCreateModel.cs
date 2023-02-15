@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Quizlet.Core.Models
+namespace Quizlet.Core.Models.Quiz
 {
     public class QuizCreateModel
     {

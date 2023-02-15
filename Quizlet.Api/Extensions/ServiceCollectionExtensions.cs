@@ -19,7 +19,8 @@ namespace Quizlet.Api.Extensions
             .AddScoped<IApplicationDbRepository, ApplicationDbRepository>()
             .AddScoped<IUserService, UserService>()
             .AddScoped<IJwtService, JwtService>()
-            .AddScoped<IQuizService, QuizService>();
+            .AddScoped<IQuizService, QuizService>()
+            .AddScoped<ICategoryService, CategoryService>();
 
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration) => 
             services.AddDbContext<QuizletAPIContext>(options =>

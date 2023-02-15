@@ -4,10 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Quizlet.Core.Models.Authentication
+namespace Quizlet.Core.Models.Return
 {
-    public abstract class AuthReturnModel
+    public abstract class ReturnModel
     {
+        public ReturnModel(bool success)
+        {
+            this.Success = success;
+        }
+
         public bool Success { get; set; }
     }
 }
